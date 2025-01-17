@@ -1,7 +1,7 @@
 import React from "react";
 
 const Banner6 = () => {
-  const backgroundImage = "/public/images/breadcrumb_bg.jpg";
+  const backgroundImage = "/images/breadcrumb_bg.jpg";
 
   return (
     <section
