@@ -30,20 +30,20 @@ const movies: Movie[] = [
     rating: 4.9,
     category: "Anime",
     imgSrc: "/images/one-punch-man-season-1.jpg", // Không cần /public
-    trailer: "/video_trailer/one_punch_man_s3_trailer.mp4", // Không cần /public
+    trailer: "https://youtu.be/1hz-sFiqdks?si=lHg6-scQfq7WooZl",
     desc: "One Punch Man kể về Saitama, một anh hùng có thể đánh bại bất kỳ kẻ thù nào chỉ với một cú đấm.",
     episodes: [
       {
         id: "1",
         name: "Tập 1: Thực thi chính nghĩa",
-        video: "/video_trailer/one_punch_man_s3_trailer.mp4", // Không cần /public
+        video: "https://youtu.be/1hz-sFiqdks?si=lHg6-scQfq7WooZl",
         duration: "24 phút",
         poster: "/poster/ss1_tap1.jpg", // Không cần /public
       },
       {
         id: "2",
         name: "Tập 2: Chàng Cyborg cô độc",
-        video: "/video_trailer/one_punch_man_s3_trailer.mp4",
+        video: "https://youtu.be/1hz-sFiqdks?si=lHg6-scQfq7WooZl",
         duration: "24 phút",
         poster: "/poster/ss1_tap2.jpg", // Không cần /public
       },

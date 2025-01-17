@@ -118,7 +118,7 @@ const MovieDetailOne = () => {
                 className="download-btn"
                 download=""
               >
-                Tải về <img src="/src/assets/images/download.svg" alt="" />
+                Tải về <img src="/images/download.svg" alt="" />
               </a>
             </div>
           </div>
