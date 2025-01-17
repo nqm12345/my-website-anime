@@ -1,0 +1,28 @@
+/* 15. Tv-series */
+
+.banner_home5 {
+    background-image: url('/public/images//tv_series_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+// .movie-item {
+//     margin-top: 50px;
+// }
+
+.tv-series-bg {
+    background-position: center;
+    background-size: cover;
+    padding: 120px 0 70px;
+}
+.tr-movie-btn .btn {
+    letter-spacing: 0;
+    background: #e4d804;
+    color: #1a1e21;
+}
+.tr-movie-btn .btn:hover {
+    background: transparent;
+    color: #fff;
+}
