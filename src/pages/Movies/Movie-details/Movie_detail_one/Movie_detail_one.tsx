@@ -6,8 +6,8 @@ import movies from "../../../../Data/Movies";
 const MovieDetailOne = () => {
   const { title } = useParams();
   const navigate = useNavigate();
-  const backgroundImage = "/public/images/movie_details_bg.jpg";
-  const backgroundImage2 = "/public/images/episode_bg.jpg";
+  const backgroundImage = "/images/movie_details_bg.jpg";
+  const backgroundImage2 = "/images/episode_bg.jpg";
 
   const movie = movies.find((movie) => movie.title === title);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,7 +57,7 @@ const MovieDetailOne = () => {
                   onClick={toggleModal}
                   className="popup-video"
                 >
-                  <img src="/public/images/play_icon.png" alt="Play" />
+                  <img src="/images/play_icon.png" alt="Play" />
                 </a>
               </div>
             </div>

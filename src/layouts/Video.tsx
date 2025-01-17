@@ -91,7 +91,7 @@ const VideoPlayer: React.FC = () => {
             ref={videoRef}
             className="video"
             controls
-            src={currentVideoSrc || "/src/assets/videos/default_video.mp4"}
+            src={currentVideoSrc || "/video_trailer/one_punch_man_s3_trailer.mp4"}
             poster={currentPosterSrc || "/src/assets/poster/default_poster.jpg"} // Hiển thị poster của tập phim hiện tại
             onTouchStart={handleTouchStart} // Thêm sự kiện cảm ứng
           ></video>
@@ -134,7 +134,7 @@ const VideoPlayer: React.FC = () => {
           <h3>Đánh giá</h3>
           <div className="review">
             <img
-              src="/public/images/avatar/images.jpg"
+              src="/images/avatar/images.jpg"
               alt="Chris Curry"
               className="avatar"
             />
@@ -145,7 +145,7 @@ const VideoPlayer: React.FC = () => {
           </div>
           <div className="review">
             <img
-              src="/public/images/avatar/thumb-1920-367029.png"
+              src="/images/avatar/thumb-1920-367029.png"
               alt="Lewis Wen"
               className="avatar"
             />
@@ -156,7 +156,7 @@ const VideoPlayer: React.FC = () => {
           </div>
           <div className="review">
             <img
-              src="/public/images/avatar/517a4ef09e4afcc6afb2cf6fc06f8bfa.jpg"
+              src="/images/avatar/517a4ef09e4afcc6afb2cf6fc06f8bfa.jpg"
               alt="Louis Tyler"
               className="avatar"
             />
