@@ -9,14 +9,14 @@
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/video_trailer/(.*)",
-      "dest": "/video_trailer/$1"
+      "source": "/video_trailer/(.*)",
+      "destination": "/video_trailer/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
