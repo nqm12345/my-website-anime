@@ -25,5 +25,5 @@ node_modules
 *.sw?
 
 # Thư mục chứa video, hình ảnh hoặc media khác
-public/video_trailer/
-public/images/
+!public/video_trailer/
+!public/images/
