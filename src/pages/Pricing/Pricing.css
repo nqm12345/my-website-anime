@@ -13,6 +13,7 @@
     border: 2px solid #1f1e24;
     padding: 45px 40px 60px;
     transition: .3s linear;
+    margin-top: 30px;
 }
 .pricing-box-item.active,
 .pricing-box-item:hover {
@@ -80,4 +81,29 @@
 }
 .pricing-btn .btn:hover {
     background: #e4d804;
+}
+
+@media (max-width: 1200px) {
+    .pricing-box-wrap {
+        padding: 0 40px; /* Giảm padding khi màn hình nhỏ hơn 1200px */
+    }
+}
+
+@media (max-width: 992px) {
+    .pricing-box-wrap {
+        padding: 20px; /* Giảm padding khi màn hình nhỏ hơn 992px */
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-box-wrap {
+        padding: 0 10px; /* Giảm padding khi màn hình nhỏ hơn 768px */
+    }
+}
+
+
+@media (max-width: 375px) {
+    .pricing-box-wrap {
+        padding: 0; /* Không có padding cho màn hình nhỏ hơn 375px */
+    }
 }

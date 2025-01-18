@@ -92,9 +92,7 @@
 .services-list ul li .content p {
     margin-bottom: 0;
 }
-.services-list {
-    padding-right: 110px;
-}
+
 .services-list ul li:last-child {
 	margin-bottom: 0;
 	padding-bottom: 0;
@@ -126,5 +124,17 @@
     left: -63px;
     padding: 28px 55px;
 }
+
+@media (max-width: 575px) {
+    .services-list {
+      display: block; /* Chuyển từ flex sang block để các mục xếp theo cột */
+    }
+  
+    .services-list ul li {
+      display: block; /* Đảm bảo các mục trong danh sách sẽ xếp theo chiều dọc */
+      margin-bottom: 20px; /* Điều chỉnh khoảng cách giữa các mục */
+    }
+  }
+  
 
 

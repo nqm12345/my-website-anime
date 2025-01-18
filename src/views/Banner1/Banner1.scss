@@ -13,7 +13,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background-image: url('/public/images/banner_1.webp');
+    background-image: url('/public/images/banner_bg01.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -47,7 +47,7 @@
     margin: 0 0 10px;
     font-size: 2.5vw;
     /* Điều chỉnh cho subtitle */
-    color: #e45204;
+    color: #E4D804;
     font-family: var(--font-family);
 }
 
@@ -55,11 +55,11 @@
     margin: 0 0 29px;
     font-size: 5vw;
     /* Điều chỉnh cho tiêu đề lớn */
-    color: #E4D804;
+    color: #fff;
 }
 
 .span-color {
-    color: #e45204;
+    color: #E4D804;
 }
 
 .flex-content {

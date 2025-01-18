@@ -10,7 +10,7 @@ const Home_3 = () => {
 
    const handleItemClick = (title: string) => {
       if (isClick.current) {
-          navigate(`/movie_details/${title}`);
+         navigate(`/movie_details/${title}`);
       }
    };
    // Lọc phim theo danh mục
@@ -23,13 +23,14 @@ const Home_3 = () => {
          <div className="container">
             <div className="row justify-content-center">
                <div className="col-lg-8">
-                  <div className="section-title text-center mb-50">
+                  <div className="section-title text-center mb-50" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100px' }}>
                      <span className="sub-title">PHÁT TRỰC TUYẾN</span>
                      <h2 className="title">Phim Được Đánh Giá Cao</h2>
                   </div>
                </div>
             </div>
-            <div className="row justify-content-center">
+
+            <div className="row justify-content-center" style={{ marginTop: "50px" }}>
                <div className="col-lg-8">
                   <div className="tr-movie-menu-active text-center">
                      <button
@@ -65,7 +66,8 @@ const Home_3 = () => {
                   </div>
                </div>
             </div>
-            <div className="row tr-movie-active">
+
+            <div className="row tr-movie-active" style={{ marginTop: "0" }}>
                {filteredMovies.map((movie, index) => (
                   <div key={index} className="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
                      <div className="movie-item mb-60" onClick={() => handleItemClick(movie.title)}>

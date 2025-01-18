@@ -10,19 +10,20 @@ const Home_5 = () => {
         if (isClick.current) {
             navigate(`/movie_details/${title}`);
         }
-     };
+    };
     return (
         <section className="tv-series-area tv-series-bg banner_home5">
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-lg-8">
-                        <div className="section-title text-center mb-50">
+                        <div className="section-title text-center mb-50" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100px' }}>
                             <span className="sub-title">Loạt Phim Hay Nhất</span>
                             <h2 className="title">Loạt Phim TV Hay Nhất Thế Giới</h2>
                         </div>
                     </div>
                 </div>
-                <div className="row justify-content-center">
+
+                <div className="row" style={{ marginTop: "50px" }}>
                     {movies.map((movie, index) => (
                         <div key={index} className="col-xl-3 col-lg-4 col-sm-6">
                             <div onClick={() => handleItemClick(movie.title)} className="movie-item mb-50">

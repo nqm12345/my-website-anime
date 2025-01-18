@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './Home_4.scss';
 import { Col } from "antd";
 import CountUp from "react-countup";
 
 const Home_4 = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleVideo = () => {
+        setIsOpen(!isOpen);
+    };
+
+    // ✅ Ngăn cuộn trang khi modal video mở
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add("no-scroll");
+        } else {
+            document.body.classList.remove("no-scroll");
+        }
+
+        // Dọn dẹp khi component bị hủy
+        return () => {
+            document.body.classList.remove("no-scroll");
+        };
+    }, [isOpen]);
+
+
     return (
         <section className="live-area live-bg fix">
             <div className="container">
@@ -39,11 +60,11 @@ const Home_4 = () => {
                                     <p>Người Xem Anime Hoạt Động</p>
                                 </div>
                             </div>
-                            <a
-                                href="https://www.youtube.com/watch?v=R2gbPxeNk2E"
-                                className="btn popup-video">
-                                <i className="fas fa-play" /> Xem Ngay
-                            </a>
+                            <li className="banner-btn" onClick={toggleVideo}>
+                                <a href="#!">
+                                    <i className="ti-control-play"></i> XEM NGAY
+                                </a>
+                            </li>
                         </div>
                     </div>
                     <div className="col-xl-7 col-lg-6">
@@ -56,6 +77,29 @@ const Home_4 = () => {
                     </div>
                 </div>
             </div>
+            {/* ✅ Modal Video */}
+            {isOpen && (
+                <div className="video-modal">
+                    <div className="video-content">
+                        <span
+                            className="close-btn"
+                            onClick={toggleVideo}
+                            onTouchEnd={toggleVideo} // Đảm bảo hoạt động trên di động
+                        >
+                            &times;
+                        </span>
+                        <iframe
+                            width="900"
+                            height="315"
+                            src="https://www.youtube.com/embed/Pm-wNmS9RGI"
+                            title="Trình phát video YouTube"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };

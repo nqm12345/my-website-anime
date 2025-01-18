@@ -1,18 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Header.scss";
 import { Drawer } from 'antd';
 
 const Header = () => {
-  const [activeNav, setActiveNav] = useState('HOME'); // Mục mặc định là HOME
+  const [activeNav, setActiveNav] = useState('');
   const [open, setOpen] = useState(false);
 
-  const showDrawer = () => {
-    setOpen(true);
-  };
+  const menuItems = [
+    { label: 'Trang Chủ', href: '/', key: 'HOME' },
+    { label: 'Anime', href: '/movie', key: 'MOVIE' },
+    { label: 'Chương Trình TV', href: '/tv_show', key: 'TV SHOW' },
+    { label: 'Giá Cả', href: '/pricing', key: 'PRICING' },
+    { label: 'Blog', href: '/blog', key: 'BLOG' },
+    { label: 'Liên Hệ', href: '/contact', key: 'CONTACTS' }
+  ];
 
-  const onClose = () => {
-    setOpen(false);
-  };
+  useEffect(() => {
+    // Function to determine the active menu item based on the current URL
+    const determineActiveNav = () => {
+      const currentPath = window.location.pathname;
+      const currentItem = menuItems.find(item => item.href === currentPath);
+      if (currentItem) {
+        setActiveNav(currentItem.key);
+      }
+    };
+
+    // Determine the active nav on component mount
+    determineActiveNav();
+
+    // Listen to URL changes
+    window.addEventListener('popstate', determineActiveNav);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener('popstate', determineActiveNav);
+    };
+  }, [menuItems]);
+
+  const showDrawer = () => setOpen(true);
+  const onClose = () => setOpen(false);
 
   return (
     <div className="">
@@ -30,34 +56,11 @@ const Header = () => {
                     </div>
                     <div className="navbar-wrap main-menu d-none d-lg-flex">
                       <ul className="navigation">
-                        <li className={`menu-item-has-children ${activeNav === 'HOME' ? 'active' : ''}`}>
-                          <a href="/">Trang Chủ</a>
-                        </li>
-                        <li className={`menu-item-has-children ${activeNav === 'MOVIE' ? 'active' : ''}`}>
-                          <a href="/movie">Anime</a>
-                          <ul className="submenu">
-                            <li className={activeNav === 'MOVIE' ? 'active' : ''}>
-                              <a href="/movie">Anime</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li className={activeNav === 'TV SHOW' ? 'active' : ''}>
-                          <a href="/tv_show">Chương Trình TV</a>
-                        </li>
-                        <li className={activeNav === 'PRICING' ? 'active' : ''}>
-                          <a href="/pricing">Giá Cả</a>
-                        </li>
-                        <li className={`menu-item-has-children ${activeNav === 'BLOG' ? 'active' : ''}`}>
-                          <a href="/blog">Blog</a>
-                          <ul className="submenu">
-                            <li className={activeNav === 'BLOG' ? 'active' : ''}>
-                              <a href="blog.html">Blog Của Chúng Tôi</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li className={activeNav === 'CONTACTS' ? 'active' : ''}>
-                          <a href="/contact">Liên Hệ</a>
-                        </li>
+                        {menuItems.map((item) => (
+                          <li key={item.key} className={`menu-item-has-children ${activeNav === item.key ? 'active' : ''}`}>
+                            <a href={item.href} onClick={() => setActiveNav(item.key)}>{item.label}</a>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                     <div className="header-action d-none d-md-block">
@@ -71,7 +74,6 @@ const Header = () => {
                           <form>
                             <div className="icon">
                               <i className="fas fa-globe"></i>
-
                             </div>
                             <select>
                               <option>Tiếng Anh</option>
@@ -82,9 +84,7 @@ const Header = () => {
                           </form>
                         </li>
                         <li className="header-btn">
-                          <a href="#" className="btn">
-                            Đăng Nhập
-                          </a>
+                          <a href="#" className="btn">Đăng Nhập</a>
                         </li>
                       </ul>
                     </div>
@@ -102,21 +102,14 @@ const Header = () => {
                       }
                     >
                       <div className='navbar-menu'>
-                        {[
-                          { label: 'Trang Chủ', href: '/' },
-                          { label: 'Anime', href: '/movie' },
-                          { label: 'Chương Trình TV', href: '/tv_show' },
-                          { label: 'Giá Cả', href: '/pricing' },
-                          { label: 'Blog', href: '/blog' },
-                          { label: 'Liên Hệ', href: '/contact' },
-                        ].map((item) => (
+                        {menuItems.map((item) => (
                           <a
-                            key={item.label}
+                            key={item.key}
                             href={item.href}
-                            className={activeNav === item.label.toUpperCase() ? 'active' : ''}
+                            className={activeNav === item.key ? 'active' : ''}
                             onClick={() => {
-                              setActiveNav(item.label.toUpperCase());
-                              onClose(); // Đóng Drawer sau khi chọn
+                              setActiveNav(item.key);
+                              onClose();
                             }}
                           >
                             {item.label}
@@ -142,7 +135,6 @@ const Header = () => {
                         </a>
                       </div>
                     </Drawer>
-
                   </nav>
                 </div>
               </div>

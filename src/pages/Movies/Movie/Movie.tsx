@@ -42,11 +42,12 @@ const Movie = () => {
       <div className="container">
         <div className="row align-items-end mb-60">
           <div className="col-lg-6">
-            <div className="section-title text-center text-lg-left">
+            <div className="section-title text-left" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: '5px' }}>
               <span className="sub-title">TRUYỀN HÌNH ONLINE</span>
               <h2 className="title">Phim Mới Ra Mắt</h2>
             </div>
           </div>
+
           <div className="col-lg-6">
             <div className="movie-page-meta">
               <div className="tr-movie-menu-active text-center">
