@@ -1,21 +1,18 @@
 import React, { useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { Link } from "react-router-dom";
 import "./Video.css";
 
 const VideoPlayer: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { videoSrc, videoTitle, episodes, posterSrc } = location.state || {};
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const [currentVideoSrc, setCurrentVideoSrc] = useState(
-    videoSrc && videoSrc.endsWith(".mp4") ? videoSrc : "/video_trailer/one_punch_man_s3_trailer.mp4"
-  );
-  const [currentPosterSrc, setCurrentPosterSrc] = useState(
-    posterSrc || "/assets/poster/default_poster.jpg"
-  );
-  const [currentVideoTitle, setCurrentVideoTitle] = useState(videoTitle || "Video");
+  const [currentVideoSrc, setCurrentVideoSrc] = useState(videoSrc);
+  const [currentPosterSrc, setCurrentPosterSrc] = useState(posterSrc);
+  const [currentVideoTitle, setCurrentVideoTitle] = useState(videoTitle);
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(
     episodes ? episodes.findIndex((episode) => episode.video === videoSrc) : 0
   );
@@ -51,19 +48,22 @@ const VideoPlayer: React.FC = () => {
 
   const handleEpisodeChange = (episode: any, index: number) => {
     setCurrentVideoSrc(episode.video);
-    setCurrentPosterSrc(episode.poster);
+    setCurrentPosterSrc(episode.poster); // Cập nhật ảnh đại diện
     setCurrentVideoTitle(episode.name);
     setCurrentEpisodeIndex(index);
+    navigate(location.pathname, {
+      state: {
+        ...location.state,
+        videoSrc: episode.video,
+        videoTitle: episode.name,
+        episodes: episodes,
+        posterSrc: episode.poster, // Cập nhật ảnh đại diện trong state
+      },
+    });
   };
 
   const handleTouchStart = () => {
-    if (videoRef.current && videoRef.current.paused) {
-      handlePlayPause();
-    }
-  };
-
-  const isValidSource = (src: string | undefined) => {
-    return src && (src.startsWith("http") || src.startsWith("/"));
+    handlePlayPause();
   };
 
   return (
@@ -81,27 +81,20 @@ const VideoPlayer: React.FC = () => {
               <Link to="/categories/romance">Lãng mạn</Link>
             </li>
             <li>
-              <span>{currentVideoTitle}</span>
+              <span>{currentVideoTitle || "Video"}</span>
             </li>
           </ul>
         </nav>
 
         <div className="video-container">
-          {isValidSource(currentVideoSrc) ? (
-            <video
-              ref={videoRef}
-              className="video"
-              controls
-              src={currentVideoSrc}
-              poster={currentPosterSrc}
-              onTouchStart={handleTouchStart}
-            >
-              <source src={currentVideoSrc} type="video/mp4" />
-              Trình duyệt của bạn không hỗ trợ thẻ video.
-            </video>
-          ) : (
-            <p>Video không khả dụng.</p>
-          )}
+          <video
+            ref={videoRef}
+            className="video"
+            controls
+            src={currentVideoSrc || "/video_trailer/one_punch_man_s3_trailer.mp4"}
+            poster={currentPosterSrc || "/src/assets/poster/default_poster.jpg"} // Hiển thị poster của tập phim hiện tại
+            onTouchStart={handleTouchStart} // Thêm sự kiện cảm ứng
+          ></video>
           <div className="controls">
             <button onClick={handlePlayPause}>Phát/Tạm dừng</button>
             <button onClick={() => handleSpeedChange(0.5)}>0.5x</button>
@@ -140,21 +133,33 @@ const VideoPlayer: React.FC = () => {
         <div className="reviews">
           <h3>Đánh giá</h3>
           <div className="review">
-            <img src="/images/avatar/images.jpg" alt="Chris Curry" className="avatar" />
+            <img
+              src="/images/avatar/images.jpg"
+              alt="Chris Curry"
+              className="avatar"
+            />
             <p>
               <strong>Chris Curry</strong> - 1 giờ trước
             </p>
             <p>Ai vừa phát hiện có người xếp phim này vào thể loại "quỷ"? LOL</p>
           </div>
           <div className="review">
-            <img src="/images/avatar/thumb-1920-367029.png" alt="Lewis Wen" className="avatar" />
+            <img
+              src="/images/avatar/thumb-1920-367029.png"
+              alt="Lewis Wen"
+              className="avatar"
+            />
             <p>
               <strong>Lewis Wen</strong> - 5 giờ trước
             </p>
             <p>Cuối cùng thì phim cũng ra mắt 5 ngày trước</p>
           </div>
           <div className="review">
-            <img src="/images/avatar/517a4ef09e4afcc6afb2cf6fc06f8bfa.jpg" alt="Louis Tyler" className="avatar" />
+            <img
+              src="/images/avatar/517a4ef09e4afcc6afb2cf6fc06f8bfa.jpg"
+              alt="Louis Tyler"
+              className="avatar"
+            />
             <p>
               <strong>Louis Tyler</strong> - 20 giờ trước
             </p>

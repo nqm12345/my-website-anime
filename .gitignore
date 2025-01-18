@@ -7,12 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Thư mục build và build sản phẩm
 node_modules
-# dist (đã bị bỏ qua)
+# dist (bỏ qua các build sản phẩm)
 # dist-ssr
 *.local
 
-# Editor directories and files
+# Các tệp Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,3 +23,7 @@ node_modules
 *.njsproj
 *.sln
 *.sw?
+
+# Thư mục chứa video, hình ảnh hoặc media khác
+public/video_trailer/
+public/images/
